@@ -44,4 +44,8 @@ export class UserService {
 		return this.afAuth.auth.currentUser.uid
 	}
 
+	getEmail(): string {
+		return this.afAuth.auth.currentUser.email
+	}
+
 }
