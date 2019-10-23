@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/tabs/tab3"></ion-back-button>
+    </ion-buttons>
+     <ion-title>Resume Upload</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-text>
+    <h1>Upload Resume into Reliable Staffing</h1>
+  </ion-text>
+
+  <ion-text>
+    <h2>Upload a file (PDF, Word) or build your own profile!</h2>
+  </ion-text>
+
+  <ion-item tappable (click)="choose()" color="light" lines="none">
+        <ion-icon name="phone-portrait" slot="start"></ion-icon>
+        Upload Resume
+  </ion-item>
+
+  <ion-item tappable routerLink="/login" routerDirection="root" color="light" lines="none">
+        <ion-icon name="clipboard" slot="start"></ion-icon>
+        Build a Resume
+  </ion-item>
+
+  <ion-item tappable routerLink="/login" routerDirection="root" color="light" lines="none">
+        <ion-icon name="videocam" slot="start"></ion-icon>
+        Video Resume
+  </ion-item>
+</ion-content>

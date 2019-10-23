@@ -1,0 +1,46 @@
+<ion-header >
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+     <ion-title>Job Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="idea.id">
+<ion-text>
+    <h1> {{idea.jobTitle}}</h1>
+</ion-text>
+ <ion-text>
+    <h2>{{idea.companyName}} in {{idea.jobCity}},{{idea.jobState}}</h2>
+  </ion-text>
+ <ion-list>
+          <ion-item lines="none">
+                      <ion-label slot="start">Pay Rate:</ion-label>
+                      <ion-text>${{idea.minSalary}}-${{idea.maxSalary}} Anually</ion-text>
+         </ion-item>
+         </ion-list>
+         <ion-list>
+          <ion-item lines="none">
+                      <ion-label slot="start">Type:</ion-label>
+                      <ion-text class="typetext">{{idea.jobPosition}}</ion-text>
+         </ion-item>
+   </ion-list>
+    <ion-textarea>{{idea.jobDescription}}</ion-textarea>
+  
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar color="light">
+
+    <ion-button color="save" routerLink="/tabs/tab1" routerDirection="Backward">
+      Dismiss Job
+    </ion-button>
+
+      <ion-button color="primary" slot="end" routerLink="/contactinfo" routerDirection="Forward">
+        Apply Now
+      </ion-button>
+    
+  </ion-toolbar>
+</ion-footer>

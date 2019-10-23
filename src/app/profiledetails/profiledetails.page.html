@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/tabs/tab3"></ion-back-button>
+    </ion-buttons>
+     <ion-title>Profile Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="fixed">Full Name</ion-label>
+    <ion-input type="string" placeholder="Enter your Full name" [(ngModel)]="fullName"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="fixed">Address</ion-label>
+    <ion-input type="string" placeholder="Enter your location" [(ngModel)]="address"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="fixed">City</ion-label>
+    <ion-input type="string" placeholder="Enter your city" [(ngModel)]="city"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="fixed">State</ion-label>
+    <ion-input type="string" placeholder="Enter your State, ex: TX" [(ngModel)]="state"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="fixed">Number</ion-label>
+    <ion-input type="string" placeholder="Enter your Contact Number" [(ngModel)]="phonenumber"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="fixed">Image</ion-label>
+    <ion-button  color="success" expand="full" (click)="updateImage()">Upload</ion-button>
+  </ion-item>
+  <ion-row>
+    <ion-col>
+      <ion-button  color="primary" expand="full" (click)="saveProfileInfo()">Save Profile Information</ion-button>
+      <ion-text class="error">{{error}}</ion-text>
+    </ion-col>
+  </ion-row>
+   <ion-row>
+    <ion-col>
+      <ion-text class="error">{{linkError}}</ion-text>
+    </ion-col>
+  </ion-row>
+</ion-content>

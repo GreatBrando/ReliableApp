@@ -1,0 +1,146 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/tabs/tab3"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+       Create Job Posting
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content padding>
+ <div class="form-container">
+    <form>
+      <ion-item lines="none" class="item-1" margin-bottom>
+        <ion-label position="stacked" class="label"> <strong class="align">Job Title<ion-icon name="medical" class="required"></ion-icon>:</strong></ion-label>
+        <ion-input clearInput class="input" padding-horizontal clear-input="true" placeholder="Enter Job Title" [(ngModel)]="jobTitle" name="jobTitle" type="text"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="item-1" margin-bottom>
+        <ion-label position="stacked" class="label"> <strong class="align">Company Name<ion-icon name="medical" class="required"></ion-icon>:</strong></ion-label>
+        <ion-input clearInput class="input" padding-horizontal clear-input="true" placeholder="Enter Company Name" [(ngModel)]="companyName" name="companyName" type="text"></ion-input>
+      </ion-item>
+       <ion-item lines="none" class="item-1" margin-bottom>
+        <ion-label position="stacked" class="label"> <strong class="align">Job Location<ion-icon name="medical" class="required"></ion-icon>:</strong></ion-label>
+        <ion-input clearInput class="input" padding-horizontal clear-input="true" placeholder="Enter Address" [(ngModel)]="jobAddress" name="jobAddress" type="text"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="item-1" margin-bottom>
+        <ion-input clearInput class="input" clear-input="true" placeholder="Enter City" [(ngModel)]="jobCity" name="jobCity" type="text"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="item-1" margin-bottom>
+        <ion-input clearInput class="input" clear-input="true" placeholder="Enter State, ex: TX" [(ngModel)]="jobState" name="jobState" type="text"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="item-1" margin-bottom>
+        <ion-label position="stacked" class="label"> <strong class="align">Job Position<ion-icon name="medical" class="required"></ion-icon>:</strong></ion-label>
+        <ion-input clearInput class="input" padding-horizontal clear-input="true" placeholder="Enter Full-Time or Part-Time" [(ngModel)]="jobPosition" name="jobPosition" type="text"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="item-1" margin-bottom>
+        <ion-label position="stacked" class="label" no-margin><strong class="align">Job Description <ion-icon name="medical" class="required"></ion-icon>: </strong></ion-label>
+        <ion-textarea clearInput class="input" padding-horizontal clear-input="true" placeholder="Enter Job Description" [(ngModel)]="jobDescription" name="jobDescription" type="text"></ion-textarea>
+      </ion-item>
+    </form>
+ </div>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <ion-item lines="none" class="item-1" margin-bottom> 
+          <ion-label position="stacked" class="label"> <strong class="align">Min Salary<ion-icon name="medical" class="required"></ion-icon>:</strong></ion-label>
+          <ion-input clearInput class="input" padding-horizontal clear-input="true" placeholder="Enter Min" [(ngModel)]="minSalary" type="number"> </ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item lines="none" class="item-1" margin-bottom>
+          <ion-label position="stacked" class="label"> <strong class="align">Max Salary<ion-icon name="medical" class="required"></ion-icon>:</strong></ion-label>
+          <ion-input clearInput class="input" padding-horizontal clear-input="true" placeholder="Enter Max" [(ngModel)]="maxSalary" type="number"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <ion-button (click)="CreateRecord()" [disabled]="!jobTitle || !companyName || !jobAddress || !jobCity || !jobState || !jobPosition || !jobDescription || !minSalary || !maxSalary">
+          <ion-icon size="small" slot="icon-only" name="add"></ion-icon>
+          &nbsp;Create Job Posting
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+ 
+ 
+  <ion-card *ngFor="let item of jobPostings">
+    <span *ngIf="!item.isEdit; else elseBlock">
+      <ion-card-header>
+        <ion-card-title>{{item.jobTitle}}</ion-card-title>
+        <ion-card-subtitle> {{item.companyName}} in {{item.jobCity}},{{item.jobState}}</ion-card-subtitle>
+        <ion-card-subtitle> Pay Rate: ${{item.minSalary}}-${{item.maxSalary}} Anually</ion-card-subtitle>
+        <ion-card-subtitle> Type: {{item.jobPosition}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+ 
+        <ion-button shape="round" color="secondary" size="small" (click)="EditRecord(item)">
+          <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+ 
+        </ion-button>
+        <ion-button shape="round" color="danger" size="small" (click)="RemoveRecord(item.id)">
+          <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+ 
+        </ion-button>
+      </ion-card-content>
+    </span>
+    <ng-template #elseBlock>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                Edit
+              </ion-col>
+              <ion-col>
+                <ion-button fill="clear" color="medium" size="small" (click)="item.isEdit = false">
+                  Cancel
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button fill="outline" color="success" size="small" (click)="UpdateRecord(item)">
+                  Update
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label><strong>Job Title</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="item.EditjobTitle"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Company Name</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="item.EditcompanyName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Job City</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="item.EditjobCity"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Job State</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="item.EditjobState"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Min Salary</strong></ion-label>
+          <ion-input type="number" [(ngModel)]="item.EditminSalary"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Max Salary</strong></ion-label>
+          <ion-input type="number" [(ngModel)]="item.EditmaxSalary"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Job Position</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="item.EditjobPosition"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ng-template>
+  </ion-card>
+
+
+ 
+</ion-content>

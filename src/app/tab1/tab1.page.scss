@@ -1,4 +1,61 @@
-.welcome-card img {
+:root {
+      --ion-safe-area-top: 30px;
+      --ion-safe-area-bottom: 22px;
+    }
+
+.job-card img {
   max-height: 35vh;
   overflow: hidden;
 }
+
+.cardfooter{
+  margin-left: 1.5em;
+}
+
+ion-button {
+    margin-left: 13em;
+    width: 100px;
+    height: 40px;
+}
+
+ion-card-title{
+font-size: 20px;
+margin-bottom: 0.5em;
+}
+
+ion-label{
+  margin-bottom: 1em;
+}
+
+ion-card app-animated-like {
+position: absolute;
+right: 5px;
+
+}
+
+ .button2{
+   position: absolute;
+   bottom: 5.8px;
+   right: 13em;
+ }
+
+ .typetext{
+   position:absolute;
+   top: 5px;
+ }
+
+ .ion-item{
+   margin-bottom: 1em;
+ }
+
+ .verify-email{
+   background: var(--ion-color-warning);
+   height: 90px;
+   font-size: 14px;
+ }
+ 
+ .verifybutton{
+   position: absolute;
+   right: 158px;
+   width: 200px;
+ }

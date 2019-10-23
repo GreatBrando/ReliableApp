@@ -1,0 +1,45 @@
+<ion-header >
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+     <ion-title>Contact Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <div class="main">
+     <ion-card no-margin>
+      <ion-card-content>
+       <ion-row class="row">
+          <ion-text>
+              <h1>Enter contact info for hiring managers</h1>
+          </ion-text>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input clearInput type="name" placeholder="Name" [(ngModel)]="name" class="input"
+              padding-horizontal clear-input="true" [type]="Name"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input clearInput type="email" placeholder="Email" [(ngModel)]="email" class="input"
+              padding-horizontal clear-input="true"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input clearInput type="Number" placeholder="Phone Number" [(ngModel)]="number"
+              class="input" padding-horizontal clear-input="true"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+               <ion-button expand="block" color="primary" routerLink="/resume" routerDirection="Forward">Next</ion-button>
+          </ion-col>
+         </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

@@ -1,9 +1,26 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab Two
-    </ion-title>
+      My Jobs 
+   </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-segment (ionChange)="segmentChanged($event)" color="primary">
+      <ion-segment-button value="friends">
+        <ion-label>Applied Jobs</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="enemies">
+        <ion-label>Favorite Jobs</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    </ion-toolbar>
+  </ion-header>
+
+  
+</ion-content>
+

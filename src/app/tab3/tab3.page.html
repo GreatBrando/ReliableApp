@@ -1,9 +1,43 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab Three
-    </ion-title>
+         My Profile
+        </ion-title>
+   <ion-buttons slot="end">
+        <ion-icon tappable routerLink="/settings" name="settings" slot="start"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-card (click)="ProfilePageFunction()">
+    <ion-card-header>
+      <ion-avatar>
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=retro&f=y">
+      </ion-avatar>
+      <ion-card-title>{{ fullName }} </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+    <ion-list lines="none">
+      <ion-item lines="none">
+       <ion-icon name="mail" ></ion-icon>
+       <ion-label>{{ email }} </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+      <ion-icon name="call"></ion-icon>
+      <ion-label>{{ phonenumber }} </ion-label>
+      </ion-item>
+    </ion-list> 
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-label>Resume</ion-label>
+  <ion-button expand="block" color="primary" routerLink="/resume2" routerDirection="Forward">Upload Resume</ion-button>
+
+  <ion-label>Create Job Posting</ion-label>
+  <ion-button expand="block" color="primary" routerLink="/create-job-posting" routerDirection="Forward"> Create Job Posting</ion-button>
+
+
+
+</ion-content>

@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+     <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-item tappable routerLink="/changepassword" routerDirection="backward" lines="none">
+        <ion-icon name="lock" slot="start"></ion-icon>
+         Change Password
+</ion-item>
+ <ion-item tappable routerLink="/login" routerDirection="root" lines="none">
+        <ion-icon name="log-out" slot="start"></ion-icon>
+         Sign Out
+  </ion-item>
+</ion-content>
