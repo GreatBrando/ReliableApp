@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { UserService } from '../user.service';
+import { firestore } from 'firebase/app'
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { CrudService } from './../crud.service';
+
 
 @Component({
   selector: 'app-animated-like',
@@ -19,13 +25,26 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class AnimatedLikeComponent implements OnInit {
 
+
+  
   public likeState: string = 'heart';
   public iconName: string = 'heart-empty';
+  jobPostingID: string;
+  jobPostingReference: AngularFirestoreDocument
+  mainuser: AngularFirestoreDocument
+  sub
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute, 
+    private afs: AngularFirestore,
+    private crudService: CrudService,
+		private user: UserService
+  ) { }
 
   ngOnInit() {
-
+    this.jobPostingID = this.route.snapshot.paramMap.get('id')
+		this.jobPostingReference = this.afs.doc(`JobPostings/${this.jobPostingID}`)
+    this.mainuser = this.afs.doc(`users/${this.user.getUID()}`)
   }
 
   toggleLikeState(){
@@ -33,9 +52,15 @@ export class AnimatedLikeComponent implements OnInit {
     if(this.likeState == 'unliked'){
       this.likeState = 'liked';
       this.iconName = 'heart';
+      this.mainuser.update({
+				likes: firestore.FieldValue.arrayUnion(this.crudService.retrieve_JobPostingsID())
+			})
     } else {
       this.likeState = 'unliked';
       this.iconName = 'heart-empty';
+      this.mainuser.update({
+				likes: firestore.FieldValue.arrayRemove(this.crudService.retrieve_JobPostingsID())
+			})
     }
 
   }

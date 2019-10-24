@@ -17,7 +17,7 @@ export class Tab1Page implements OnInit {
   jobCollection: any
   public jobPostingsList: any[];
   public loadedjobPostingsList: any[];
-  passided
+  
 
   jobPostings: any;
   loadedjobPostings: any;
@@ -65,7 +65,7 @@ export class Tab1Page implements OnInit {
         
 
 
-      this.firestore.collection(`JobPostings`).valueChanges({ idField: 'eventId' })
+    this.firestore.collection(`JobPostings`).valueChanges({ idField: 'eventId' })
       .subscribe(jobPostingsList => {
         this.jobPostingsList = jobPostingsList;
         this.loadedjobPostingsList = jobPostingsList;

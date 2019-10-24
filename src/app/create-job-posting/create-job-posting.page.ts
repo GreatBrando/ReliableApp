@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from './../crud.service';
+import { UserService } from '../user.service';
+
 
 
 @Component({
@@ -21,9 +23,14 @@ export class CreateJobPostingPage implements OnInit {
   maxSalary: number;
 
 
-  constructor(private crudService: CrudService) { }
+  constructor(
+    private crudService: CrudService,
+    private user: UserService
+
+  ) { }
 
   ngOnInit() {
+
     this.crudService.read_JobPostings().subscribe(data => {
 
       this.jobPostings = data.map(e => {

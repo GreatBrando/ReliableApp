@@ -40,6 +40,10 @@ export class LoginPage implements OnInit {
         console.log("password not found")
         this.showAlert("Error", "The password is invalid")
       }
+      if(err.code == "auth/user-not-found"){
+        console.log("password not found")
+        this.showAlert("Error", "Account not found. Please Register.")
+      }
     }
 
   }

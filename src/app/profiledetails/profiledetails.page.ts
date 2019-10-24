@@ -3,6 +3,7 @@ import { UserService } from '../user.service';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 
+
 @Component({
   selector: 'app-profiledetails',
   templateUrl: './profiledetails.page.html',
@@ -23,6 +24,16 @@ export class ProfiledetailsPage implements OnInit {
   constructor(private afs: AngularFirestore, private user: UserService) { }
 
   ngOnInit() {
+    this.mainuser = this.afs.doc(`users/${this.user.getUID()}`)
+       this.mainuser.valueChanges().subscribe(event => {
+			 this.fullName = event.fullName
+       this.address = event.address
+       this.city = event.city
+       this.state = event.state
+       this.email = event.email
+       this.phonenumber = event.phonenumber
+       console.log(event)
+      }) 
   }
 
   async saveProfileInfo(){
@@ -39,7 +50,7 @@ export class ProfiledetailsPage implements OnInit {
       this.phonenumber = event.phonenumber
 		})  
 
-      this.afs.doc(`users/${this.user.getUID()}`).update({
+   this.afs.doc(`users/${this.user.getUID()}`).update({
         fullName,
         address,
         city,

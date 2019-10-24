@@ -27,6 +27,9 @@ export class CrudService {
   delete_JobPostings(record_id) {
     this.firestore.doc('JobPostings/' + record_id).delete();
   }
+  retrieve_JobPostingsID(){
+      
+  }
 
 }
  

@@ -18,7 +18,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
-
+import { HttpModule } from '@angular/http'
 
 
 
@@ -30,6 +30,7 @@ import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/fi
   BrowserAnimationsModule, 
   IonicModule.forRoot(), 
   AppRoutingModule,
+  HttpModule,
   AngularFireModule.initializeApp(firebaseConfig),
   AngularFireAuthModule,
   AngularFirestoreModule,
