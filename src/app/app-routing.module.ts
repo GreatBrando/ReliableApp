@@ -13,12 +13,12 @@ const routes: Routes = [
   { path: 'changepassword', loadChildren: './changepassword/changepassword.module#ChangepasswordPageModule' },
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
   { path: 'forgotpassword', loadChildren: './forgotpassword/forgotpassword.module#ForgotpasswordPageModule' },
+  { path: 'profiledetails', loadChildren: './profiledetails/profiledetails.module#ProfiledetailsPageModule' },
+  { path: 'create-job-posting', loadChildren: './create-job-posting/create-job-posting.module#CreateJobPostingPageModule' },
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
-  { path: 'profiledetails', loadChildren: './profiledetails/profiledetails.module#ProfiledetailsPageModule' },
-  { path: 'create-job-posting', loadChildren: './create-job-posting/create-job-posting.module#CreateJobPostingPageModule' },
 ];
 @NgModule({
   imports: [

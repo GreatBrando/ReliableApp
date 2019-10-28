@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore'
+import { AngularFirestore } from '@angular/fire/firestore';
 import { auth } from 'firebase/app';
-import { Router } from '@angular/router' 
-
-import { AlertController } from '@ionic/angular'
+import { Router } from '@angular/router' ;
+import * as firebase from 'firebase/app';
+import { AlertController } from '@ionic/angular';
 import { UserService } from './../user.service';
 
 
@@ -16,6 +16,8 @@ import { UserService } from './../user.service';
 export class RegisterPage implements OnInit {
 
     email: string = ""
+    fullName: string = ""
+    phonenumber: string = ""
     password: string = ""
     cpassword: string = ""
 
@@ -31,7 +33,7 @@ export class RegisterPage implements OnInit {
     }
 
     async register() {
-      const { email, password, cpassword} = this
+      const { email, fullName, phonenumber, password, cpassword} = this
       if(password !== cpassword){
         this.showAlert("Error!", "Passwords Do Not Match")
         return console.error("Passwords Do Not Match")
@@ -41,7 +43,12 @@ export class RegisterPage implements OnInit {
       console.log(res)
 
       this.afstore.doc(`users/${res.user.uid}`).set({
-        email
+        email,
+        fullName,
+        phonenumber,
+        role: 'User',
+        permissions: [],
+        created: firebase.firestore.FieldValue.serverTimestamp(),
       })
 
       this.user.setUser({

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { Router } from '@angular/router' 
-
+import { AuthService } from '../auth.service'
 import { AlertController } from '@ionic/angular'
 
 
@@ -13,12 +13,13 @@ import { AlertController } from '@ionic/angular'
 })
 export class LoginPage implements OnInit {
 
-  email: string = ""
-  password: string = ""
+  email: string;
+  password: string;
 
   constructor(
     public afAuth: AngularFireAuth,
-    public alert: AlertController,
+    public alert: AlertController,    
+    private auth: AuthService,
     public router: Router
     ) { }
 
@@ -26,9 +27,9 @@ export class LoginPage implements OnInit {
   }
 
   async login() {
-    const { email, password } = this
+
     try{
-        const res = await this.afAuth.auth.signInWithEmailAndPassword(email, password)
+        const res = await this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
         this.router.navigate(['/tabs/tab1'])
     } catch(err) {
       console.dir(err)
