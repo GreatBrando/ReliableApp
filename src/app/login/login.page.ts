@@ -4,6 +4,8 @@ import { auth } from 'firebase/app';
 import { Router } from '@angular/router' 
 import { AuthService } from '../auth.service'
 import { AlertController } from '@ionic/angular'
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+
 
 
 @Component({
@@ -13,10 +15,12 @@ import { AlertController } from '@ionic/angular'
 })
 export class LoginPage implements OnInit {
 
+  loginForm: FormGroup;
   email: string;
   password: string;
 
   constructor(
+    private fb: FormBuilder,
     public afAuth: AngularFireAuth,
     public alert: AlertController,    
     private auth: AuthService,
@@ -24,38 +28,31 @@ export class LoginPage implements OnInit {
     ) { }
 
   ngOnInit() {
+      this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
   }
 
   async login() {
+     this.auth.signIn(this.loginForm.value).subscribe(
+      user => {
+        let role = user['role'];
+        if (role == 'USER') {
+          this.router.navigateByUrl('/tabs/tab1');
+        } else if (role == 'ADMIN') {
+          this.router.navigateByUrl('/tabs2/tab1');
+        }
+      },
+      async err => {
 
-    try{
-        const res = await this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password)
-        this.router.navigate(['/tabs/tab1'])
-    } catch(err) {
-      console.dir(err)
-      if(err.code === "auth/invalid-email"){
-          console.log("email not found")
-          this.showAlert("Error", "Email not Found")
+        let alert = await this.alert.create({
+          header: 'Error',
+          message: err.message,
+          buttons: ['OK']
+        });
+        alert.present();
       }
-      if(err.code == "auth/wrong-password"){
-        console.log("password not found")
-        this.showAlert("Error", "The password is invalid")
-      }
-      if(err.code == "auth/user-not-found"){
-        console.log("password not found")
-        this.showAlert("Error", "Account not found. Please Register.")
-      }
-    }
-
+    );
   }
-
-   async showAlert(header: string, message: string){
-    const alert = await this.alert.create({
-        header,
-        message,
-        buttons: ["Ok"]
-    })
-     await alert.present()
-  }
-
 }

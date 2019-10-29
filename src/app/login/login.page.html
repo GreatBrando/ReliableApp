@@ -8,15 +8,16 @@
             <img src="/assets/ReliableStaffingLogo.jpg" class="img-logo">
           </div>
         </ion-row>
+  <form [formGroup]="loginForm">
         <ion-row>
           <ion-col>
-            <ion-input clearInput type="email" placeholder="Email" [(ngModel)]="email" class="input" padding-horizontal
+            <ion-input clearInput type="email" formControlName="email" placeholder="Email" [(ngModel)]="email" class="input" padding-horizontal
               clear-input="true"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-input clearInput type="password" placeholder="Password" [(ngModel)]="password" class="input"
+            <ion-input clearInput type="password" formControlName="password"  placeholder="Password" [(ngModel)]="password" class="input"
               padding-horizontal clear-input="true"></ion-input>
           </ion-col>
         </ion-row>
@@ -27,6 +28,7 @@
                 Login</strong></ion-button>
           </ion-col>
         </ion-row>
+        </form>
         <ion-row>
           <ion-col>
             <ion-text class="error" text-center>{{error}}</ion-text>

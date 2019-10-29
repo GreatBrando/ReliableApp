@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { auth } from 'firebase/app';
 import { Router } from '@angular/router' ;
 import * as firebase from 'firebase/app';
@@ -14,7 +15,7 @@ import { UserService } from './../user.service';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-
+    registerForm: FormGroup;
     email: string = ""
     fullName: string = ""
     phonenumber: string = ""
@@ -26,10 +27,18 @@ export class RegisterPage implements OnInit {
       public alert: AlertController,
       public afstore: AngularFirestore,
       public user: UserService,
+      private fb: FormBuilder,
       public router: Router
       ) { }
 
     ngOnInit() {
+      this.registerForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      cpassword: ['', [Validators.required, Validators.minLength(6)]],
+      phonenumber: ['', [Validators.required, Validators.minLength(13)]],
+      fullName: ['', Validators.required],
+     });
     }
 
     async register() {
@@ -46,7 +55,7 @@ export class RegisterPage implements OnInit {
         email,
         fullName,
         phonenumber,
-        role: 'User',
+        role: 'USER',
         permissions: [],
         created: firebase.firestore.FieldValue.serverTimestamp(),
       })

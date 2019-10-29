@@ -18,39 +18,41 @@
             <img src="/assets/ReliableStaffingLogo.jpg" class="img-logo">
           </div>
         </ion-row>
+    <form [formGroup]="registerForm">
         <ion-row>
           <ion-col>
-            <ion-input clearInput type="email" placeholder="Email" [(ngModel)]="email" class="input"
+            <ion-input clearInput type="email" placeholder="Email" formControlName="email" [(ngModel)]="email" class="input"
               padding-horizontal clear-input="true"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-input clearInput type="string" placeholder="Full Name" [(ngModel)]="fullName" class="input"
+            <ion-input clearInput type="string" placeholder="Full Name" formControlName="fullName" [(ngModel)]="fullName" class="input"
               padding-horizontal clear-input="true"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-input clearInput type="string" placeholder="Contact Number" [(ngModel)]="phonenumber" class="input"
+            <ion-input clearInput type="text" placeholder="Contact Number" formControlName="phonenumber" [(ngModel)]="phonenumber" class="input"
               padding-horizontal clear-input="true"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-input clearInput type="password" placeholder="Password" [(ngModel)]="password" class="input"
+            <ion-input clearInput type="password" placeholder="Password" formControlName="password" [(ngModel)]="password" class="input"
               padding-horizontal clear-input="true"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-input clearInput type="password" placeholder="Confirm Password" [(ngModel)]="cpassword"
+            <ion-input clearInput type="password" placeholder="Confirm Password" formControlName="cpassword" [(ngModel)]="cpassword"
               class="input" padding-horizontal clear-input="true"></ion-input>
           </ion-col>
         </ion-row>
+        </form>
         <ion-row>
           <ion-col>
-            <ion-button expand="block" (click)="register()" color="undefined" class="transition">
+            <ion-button expand="block" (click)="register()" color="undefined" class="transition" [disabled]="!email || !fullName || !phonenumber || !password || !cpassword">
               <strong class="white">
                 Register</strong></ion-button>
           </ion-col>

@@ -20,7 +20,6 @@ export class Tab1Page implements OnInit {
   
 
   jobPostings: any;
-  loadedjobPostings: any;
   hasVerifiedEmail = true;
 
   constructor(

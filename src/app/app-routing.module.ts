@@ -19,6 +19,11 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
+  {
+    path: '',
+    loadChildren: () => import('./tabs2/tabs2.module').then(m => m.Tabs2PageModule)
+  },
+  { path: 'view-users', loadChildren: './view-users/view-users.module#ViewUsersPageModule' },
 ];
 @NgModule({
   imports: [

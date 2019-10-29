@@ -8,7 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { UserService } from './user.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -34,7 +34,9 @@ import { HttpModule } from '@angular/http'
   AngularFireModule.initializeApp(firebaseConfig),
   AngularFireAuthModule,
   AngularFirestoreModule,
-  AngularFireDatabaseModule
+  AngularFireDatabaseModule,
+  FormsModule,
+  ReactiveFormsModule
   ],
   providers: [
     StatusBar,
