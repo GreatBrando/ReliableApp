@@ -115,6 +115,10 @@
           <ion-input type="text" [(ngModel)]="item.EditcompanyName"></ion-input>
         </ion-item>
         <ion-item>
+          <ion-label><strong>Job Address</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="item.EditjobAddress"></ion-input>
+        </ion-item>
+        <ion-item>
           <ion-label><strong>Job City</strong></ion-label>
           <ion-input type="text" [(ngModel)]="item.EditjobCity"></ion-input>
         </ion-item>
@@ -133,6 +137,10 @@
         <ion-item>
           <ion-label><strong>Job Position</strong></ion-label>
           <ion-input type="text" [(ngModel)]="item.EditjobPosition"></ion-input>
+        </ion-item>
+         <ion-item>
+          <ion-label><strong> Description</strong></ion-label>
+          <ion-textarea clearInput class="input" autogrow=true [(ngModel)]="item.EditjobDescription" type="text"></ion-textarea>
         </ion-item>
       </ion-card-content>
     </ng-template>

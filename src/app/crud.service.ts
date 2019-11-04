@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
- 
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
  
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class CrudService {
  
   constructor(
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private afAuth: AngularFireAuth
   ) { }
  
  
